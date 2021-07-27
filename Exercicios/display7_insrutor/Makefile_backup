@@ -1,18 +1,21 @@
 FILENAME   = main_io
-PORT       = COM9
+PORT       = COM5
 DEVICE     = atmega328p
 PROGRAMMER = arduino
 BAUD       = 115200
 COMPILE    = avr-gcc -Wall -Os -mmcu=$(DEVICE)
 
-default: compile upload
+default: compile
 
-compile:
+compile: io_ctr.o 
 	$(COMPILE) -c $(FILENAME).c -o $(FILENAME).o
-	$(COMPILE) -o $(FILENAME).elf $(FILENAME).o
+	$(COMPILE) -o $(FILENAME).elf $(FILENAME).o io_ctr.o
 	avr-objcopy -j .text -j .data -O ihex $(FILENAME).elf $(FILENAME).hex 
 	avr-size --format=avr --mcu=$(DEVICE) $(FILENAME).elf
-	
+
+io_ctr.o: io_ctr.h
+	$(COMPILE) -c io_ctr.c -o io_ctr.o
+
 upload:
 	avrdude -v -p $(DEVICE) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:$(FILENAME).hex
 
