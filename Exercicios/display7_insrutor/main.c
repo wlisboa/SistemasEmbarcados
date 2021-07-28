@@ -9,32 +9,8 @@
 #include <util/delay.h>
 #include "io_ctr.h"
 
-void escreveDisplay(int valor){
-    if (valor == 1){
-        digitalWrite(D2,FALSE); //Seg a
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D4,TRUE); //Seg c
-        digitalWrite(D5,FALSE); //Seg d
-        digitalWrite(D6,FALSE); //Seg e
-        digitalWrite(D7,FALSE); //Seg f
-        digitalWrite(D8,FALSE); //Seg g
-        digitalWrite(D9,FALSE); 
-    } 
 
-    if (valor == 2){
-        digitalWrite(D2,TRUE); //Seg a
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D4,FALSE); //Seg c
-        digitalWrite(D5,TRUE); //Seg d
-        digitalWrite(D6,TRUE); //Seg e
-        digitalWrite(D7,FALSE); //Seg f
-        digitalWrite(D8,TRUE); //Seg g
-        digitalWrite(D9,FALSE); 
-    } 
-}
-
-int main(){
-    mapPorts();
+void initDisplay(){
     pinMode(D2,OUTPUT); //Seg a
     pinMode(D3,OUTPUT); //Seg b
     pinMode(D4,OUTPUT); //Seg c
@@ -43,8 +19,104 @@ int main(){
     pinMode(D7,OUTPUT); //Seg f
     pinMode(D8,OUTPUT); //Seg g
     pinMode(D9,OUTPUT); //Seg .
+}
+
+void clearDisplay(){
+    digitalWrite(D2,FALSE); //Seg a
+    digitalWrite(D3,FALSE); //Seg b
+    digitalWrite(D4,FALSE); //Seg c
+    digitalWrite(D5,FALSE); //Seg d
+    digitalWrite(D6,FALSE); //Seg e
+    digitalWrite(D7,FALSE); //Seg f
+    digitalWrite(D8,FALSE); //Seg g
+    digitalWrite(D9,FALSE); //Seg .
+}
+
+void escreveDisplay(int valor){
+    clearDisplay();
+    if (valor == 1){
+        digitalWrite(D3,TRUE); //Seg b
+        digitalWrite(D4,TRUE); //Seg c
+    } 
+
+    if (valor == 2){
+        digitalWrite(D2,TRUE); //Seg a
+        digitalWrite(D3,TRUE); //Seg b
+        digitalWrite(D5,TRUE); //Seg d
+        digitalWrite(D6,TRUE); //Seg e
+        digitalWrite(D8,TRUE); //Seg g
+    } 
+
+    if (valor == 3){
+        digitalWrite(D2,TRUE); //Seg a
+        digitalWrite(D3,TRUE); //Seg b
+        digitalWrite(D4,TRUE); //Seg c
+        digitalWrite(D5,TRUE); //Seg d
+        digitalWrite(D8,TRUE); //Seg g
+    } 
+
+    if (valor == 4){
+        digitalWrite(D3,TRUE); //Seg b
+        digitalWrite(D4,TRUE); //Seg c
+        digitalWrite(D7,TRUE); //Seg f
+        digitalWrite(D8,TRUE); //Seg g
+    } 
+
+    if (valor == 5){
+        digitalWrite(D2,TRUE); //Seg a
+        digitalWrite(D4,TRUE); //Seg c
+        digitalWrite(D5,TRUE); //Seg d
+        digitalWrite(D7,TRUE); //Seg f
+        digitalWrite(D8,TRUE); //Seg g
+    } 
+
+    if (valor == 6){
+        digitalWrite(D2,TRUE); //Seg a
+        digitalWrite(D4,TRUE); //Seg c
+        digitalWrite(D5,TRUE); //Seg d
+        digitalWrite(D6,TRUE); //Seg e
+        digitalWrite(D7,TRUE); //Seg f
+        digitalWrite(D8,TRUE); //Seg g
+    } 
+
+    if (valor == 7){
+        digitalWrite(D2,TRUE); //Seg a
+        digitalWrite(D3,TRUE); //Seg b
+        digitalWrite(D4,TRUE); //Seg c
+    } 
+
+    if (valor == 8){
+        digitalWrite(D2,TRUE); //Seg a
+        digitalWrite(D3,TRUE); //Seg b
+        digitalWrite(D4,TRUE); //Seg c
+        digitalWrite(D5,TRUE); //Seg d
+        digitalWrite(D6,TRUE); //Seg e
+        digitalWrite(D7,TRUE); //Seg f
+        digitalWrite(D8,TRUE); //Seg g
+    } 
+
+    if (valor == 9){
+        digitalWrite(D2,TRUE); //Seg a
+        digitalWrite(D3,TRUE); //Seg b
+        digitalWrite(D4,TRUE); //Seg c
+        digitalWrite(D5,TRUE); //Seg d
+        digitalWrite(D7,TRUE); //Seg f
+        digitalWrite(D8,TRUE); //Seg g
+    } 
+}
+
+int main(){
+    int intContador = 0;
+    mapPorts();
+    initDisplay();
     while(1) { 
-        escreveDisplay(2);
+        while (intContador < 10){
+            escreveDisplay(intContador);
+            intContador =  intContador + 1;
+            _delay_ms(1000);
+        }
+        intContador = 0;
     }
     return 0;
-} 
+}
+
