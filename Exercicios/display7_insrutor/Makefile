@@ -1,5 +1,5 @@
 FILENAME   = main
-PORT       = COM9
+PORT       = COM10
 DEVICE     = atmega328p
 PROGRAMMER = arduino
 BAUD       = 115200
