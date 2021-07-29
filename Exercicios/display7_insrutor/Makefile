@@ -28,6 +28,8 @@ clean:
 	rm main.o
 	rm project.elf
 	rm project.hex
+	rm io_crt.o
+	rm display_ctr.o
 
 size:
 	avr-size --format=avr --mcu=$(DEVICE) $(FILENAME).elf
