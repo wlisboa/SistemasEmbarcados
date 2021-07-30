@@ -13,13 +13,27 @@
 
 int main(){
     int intContador = 0;
+    unsigned char ucCmd;
     mapPorts();
     initDisplay();
     fnInitUsart(MYUBRR);
 
     while(1) { 
-        fnWrUsart("Hello Word");
-        _delay_ms(1000);
+        fnWrUsart("Ola eu sou um sistema embarcado\n\r");
+        fnWrUsart("Digite um comando:");
+        ucCmd = fnUsartGetC();
+        if (ucCmd == '1'){
+            fnWrUsart("\n\n\rVoce digitou um comando valido\n\n\r");
+            escreveDisplay(1);
+        }
+        else if(ucCmd == '2'){
+            fnWrUsart("\n\n\rVoce digitou um comando valido\n\n\r");
+            escreveDisplay(2);
+        }
+        else{
+            fnWrUsart("\n\n\r>>>>>ERRO<<<<\n\n\r");
+        }
+        _delay_ms(10);
     }
     return 0;
 }
