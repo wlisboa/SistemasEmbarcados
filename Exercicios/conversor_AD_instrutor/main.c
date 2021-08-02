@@ -11,28 +11,32 @@
 #include "io_ctr.h"
 #include "display_ctr.h"
 #include "usart_w.h"
+#include "driveadc.h"
 
 int main(){
     int intContador = 0;
     unsigned char ucCmd;
     unsigned char ucEstado;
-    char myString[20];
-    int valor = 5;
-    sprintf(myString, "Valor = %d", &valor);
+    int iTensao;
 
+    // Inicializacao das bibliotecas
     mapPorts();
     initDisplay();
     fnInitUsart(MYUBRR);
+    fnInitAdc();
 
-    pinMode(D13, OUTPUT);
+    pinMode(D13,OUTPUT);
 
+    digitalWrite(A0, FALSE);
+
+    // Loop principal
     while(1) { 
         fnWrUsart("Ola eu sou um sistema embarcado\n\r");
-        fnWrUsart(myString);
         fnWrUsart("Comandos:\n\r");
         fnWrUsart("1 - Escreve no display\n\r");
         fnWrUsart("2 - Escreve no display\n\r");
-        fnWrUsart("l - Liga o Led\n\r");
+        fnWrUsart("l - Liga/desliga  o Led\n\r");
+        fnWrUsart("a - Le o valor do A0\n\r");
         fnWrUsart("Digite um comando:");
         ucCmd = fnUsartGetC();
         if (ucCmd == '1'){
@@ -54,11 +58,17 @@ int main(){
                 digitalWrite(D13, TRUE);
             }
         }
+        else if(ucCmd == 'a'){
+            fnWrUsart("\n\n\rVoce digitou um comando valido\n\n\r");
+            iTensao = fnLerAdc(0);
+            fnWrUsart("\n\rTensao: ");
+            fnWrInt(iTensao);
+            fnWrUsart("\n\r");
+        }
         else{
             fnWrUsart("\n\n\r>>>>>ERRO<<<<\n\n\r");
         }
-        _delay_ms(10);
+        //_delay_ms(10);
     }
     return 0;
 }
-

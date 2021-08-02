@@ -5,16 +5,18 @@
 #ifndef		__DRIVEADC_H_
 #define 	__DRIVEADC_H_
 
-#define PRECISAO 500 / 1023   // Podemos definir a precisão do AD alterando a
-                              // quantidades de zeros nessa variável.
+#include <avr/io.h>
+
+#define PRECISAO 500 / 1023   // Podemos definir a precisï¿½o do AD alterando a
+                              // quantidades de zeros nessa variï¿½vel.
 
 void
 fnInitAdc(void);
 
 int
-fnLerAdc(void);
+fnLerAdc(uint8_t pin);
 
-void
-fnLerTensao(void);
+int
+fnLerTensao(uint8_t pin);
 
 #endif

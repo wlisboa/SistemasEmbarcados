@@ -7,8 +7,8 @@ COMPILE    = avr-gcc -Wall -Os -mmcu=$(DEVICE)
 
 default: linker upload clean
 
-linker: main.o io_ctr.o display_ctr.o usart_w.o
-	$(COMPILE) -o project.elf main.o io_ctr.o display_ctr.o usart_w.o
+linker: main.o io_ctr.o display_ctr.o usart_w.o driveadc.o
+	$(COMPILE) -o project.elf main.o io_ctr.o display_ctr.o usart_w.o driveadc.o
 	avr-objcopy -j .text -j .data -O ihex project.elf project.hex 
 	avr-size --format=avr --mcu=$(DEVICE) project.elf
 
@@ -24,6 +24,9 @@ display_ctr.o: display_ctr.h
 usart_w.o: usart_w.c usart_w.h
 	$(COMPILE) -c usart_w.c -o usart_w.o
 
+driveadc.o: driveadc.c driveadc.h
+	$(COMPILE) -c driveadc.c -o driveadc.o
+
 upload:
 	avrdude -v -p $(DEVICE) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:project.hex
 
@@ -32,6 +35,7 @@ clean:
 	rm display_ctr.o
 	rm io_ctr.o
 	rm usart_w.o
+	rm driveadc.o
 	rm project.elf
 	rm project.hex
 

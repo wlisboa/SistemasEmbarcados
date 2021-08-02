@@ -24,4 +24,10 @@ fnUsartGetC(void);
 void
 fnWrUsart(char *c);
 
+void
+fnWrInt(int valor);
+
+void
+fnWrHex(uint8_t valor);
+
 #endif
