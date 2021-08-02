@@ -60,7 +60,7 @@ int main(){
         }
         else if(ucCmd == 'a'){
             fnWrUsart("\n\n\rVoce digitou um comando valido\n\n\r");
-            iTensao = fnLerAdc(0);
+            iTensao = fnLerAdc();
             fnWrUsart("\n\rTensao: ");
             fnWrInt(iTensao);
             fnWrUsart("\n\r");

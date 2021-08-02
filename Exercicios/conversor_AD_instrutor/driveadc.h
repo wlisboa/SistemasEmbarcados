@@ -14,9 +14,9 @@ void
 fnInitAdc(void);
 
 int
-fnLerAdc(uint8_t pin);
+fnLerAdc();
 
 int
-fnLerTensao(uint8_t pin);
+fnLerTensao();
 
 #endif

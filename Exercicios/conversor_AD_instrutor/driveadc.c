@@ -2,16 +2,13 @@
 //***		DRIVEADC.C														***
 //*****************************************************************************
 
-#include "defines.h"
 #include "driveadc.h"
-
-#include "lcd4b.h"
 
 
 /*****************************************************************************
 NOME:			void	fnInitAdc()
 
-DESCRIÇÃO:		Inializa os registradores do conversor analógico- digital.
+DESCRICAO:		Inializa os registradores do conversor analï¿½gico- digital.
 
 PARAMETROS:		Nulo
 
@@ -24,14 +21,13 @@ fnInitAdc(void)
 	/**************CONTROLE DO ADC************************/
 	ADMUX  =0b01000000;
 	ADCSRA =0b10000000;
-	SFIOR  =0b00000000;
 	/*****************************************************/
 }
 
 /***************************************************************************
 NOME:        fnLerAdc(unsigned char canal)
 
-DESCRIÇÃO:	 Nulo
+DESCRICAO:	 Nulo
 
 PARAMETROS:  Nulo
 
@@ -44,10 +40,10 @@ fnLerAdc(void)
 	int Vlow, Vhi;
 	float tensao;
 	
-	ADCSRA |=_BV(ADSC);         //Seta o flag para iniciar a conversão.
+	ADCSRA |=_BV(ADSC);         //Seta o flag para iniciar a conversï¿½o.
 	
 	do{
-	}while(ADCSRA & _BV(ADSC)); //Prende a execussão do programa até que a leitura esteja terminada
+	}while(ADCSRA & _BV(ADSC)); //Prende a execussï¿½o do programa atï¿½ que a leitura esteja terminada
 
 	Vlow = ADCL;
  	Vhi  = ADCH;
@@ -62,14 +58,14 @@ fnLerAdc(void)
 /***************************************************************************
 NOME:        fnLerTensao(void)
 
-DESCRIÇÃO:	 -
+DESCRIï¿½ï¿½O:	 -
 
 PARAMETROS:  -
 
 RETORNO:     Nulo.
 ****************************************************************************/
 
-void
+int
 fnLerTensao(void)
 {
 	int i;
@@ -83,6 +79,5 @@ fnLerTensao(void)
 		media = media + fnLerAdc();
 	}
 	
-	tensao_lida = media;
-	tensao_lida = media / 10;
+	return (media/10);
 }
