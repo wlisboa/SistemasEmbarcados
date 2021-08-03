@@ -1,25 +1,21 @@
-FILENAME   = main_io
-PORT       = COM9
-DEVICE     = atmega328p
-PROGRAMMER = arduino
-BAUD       = 115200
-COMPILE    = avr-gcc -Wall -Os -mmcu=$(DEVICE)
 
-default: compile upload
+default: projeto gravar clean
 
-compile:
-	$(COMPILE) -c $(FILENAME).c -o $(FILENAME).o
-	$(COMPILE) -o $(FILENAME).elf $(FILENAME).o
-	avr-objcopy -j .text -j .data -O ihex $(FILENAME).elf $(FILENAME).hex 
-	avr-size --format=avr --mcu=$(DEVICE) $(FILENAME).elf
-	
-upload:
-	avrdude -v -p $(DEVICE) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -U flash:w:$(FILENAME).hex
+projeto: main_io.o io_ctr.o
+	avr-gcc -Wall -Os -mmcu=atmega328p -o projeto.elf main_io.o io_ctr.o
+	avr-objcopy -j .text -j .data -O ihex projeto.elf projeto.hex 
+
+main_io.o:
+	avr-gcc -Wall -Os -mmcu=atmega328p -c main_io.c -o main_io.o
+
+io_ctr.o: io_ctr.h
+	avr-gcc -Wall -Os -mmcu=atmega328p -c io_ctr.c -o io_ctr.o
+
+gravar:
+	avrdude -v -p atmega328p -c arduino -P COM10 -b 115200 -U flash:w:projeto.hex
 
 clean:
-	rm $(FILENAME).o
-	rm $(FILENAME).elf
-	rm $(FILENAME).hex
-
-size:
-	avr-size --format=avr --mcu=$(DEVICE) $(FILENAME).elf
+	rm main_io.o
+	rm io_ctr.o
+	rm projeto.elf
+	rm projeto.hex
