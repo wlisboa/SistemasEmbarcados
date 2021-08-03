@@ -1,0 +1,19 @@
+  O seguinte projeto foi desenvolvido primeiramente para teste das funcionalidades da placa Kit Avr.
+  
+O objetivo é a criação de um modelo padrão com todos os drivers dos dispositivos contidos na placa
+que poderá ser utilizado para implementação de outros softwares.
+
+
+   O Backup foi criado para o caso de perda do software que também se encontra gravado na rede da UFAM.
+
+Criação  11/09/2007  - Versão inicial do programa. O programa foi criado para realização da calibração
+                       do oscilador interno do BINA.
+
+Alteração 4/06/2008  - Retirou - se a etapa de testes do bina implementou-se a divisão dos drivers 
+		       em arquivos separados.
+
+Alteração 28/08/2009 - Introdução do módulo controlador do ADC, da USART, da interrupções externas.
+                       E ainda o acréscimo de um monitor que permite o controle da placa via porta
+		       serial.
+   
+
