@@ -32,13 +32,17 @@ void fnMenuPrincipal(void){
     fnWrUsart("3 - Ad digital\n\r");
     fnWrUsart("4 - Ad Serial\n\r");
     fnWrUsart("Digite um comando:");
-    intEstado = fnUsartGetC();
+    ucCmd = fnUsartGetC();
+    fnUsartPutC(ucCmd);
+    fnWrUsart("\n\r");
+    intEstado = ucCmd;
 }
 
 void fnAcionaLed(void){
     static int intMenuLed;
-    fnWrUsart("Funcao aciona Led\n\r");
-    fnWrUsart("Digite `q` para sair\n\r");
+    fnWrUsart("Menu aciona Led\n\r");
+    fnWrUsart("l - Para acender e apagar o Led\n\r");
+    fnWrUsart("q - Para sair\n\r");
 
     intMenuLed = fnUsartGetC();
     if (intMenuLed == 'l'){
@@ -57,9 +61,21 @@ void fnAcionaLed(void){
 }
 
 void fnAcionaDisplay(void){
+    static int intMenuAcionaDisplay;
+    fnWrUsart("Menu aciona display\n\r");
+    fnWrUsart("0 a 9 - Para acionar o display\n\r");
+    fnWrUsart("q     - Para sair\n\r");
+    intMenuAcionaDisplay = fnUsartGetC(); 
+    if (intMenuAcionaDisplay == 'q'){
+        intEstado = S_MENU_PRINCIAL;
+    }
+    else if('0'<= intMenuAcionaDisplay <= '9') {
+        escreveDisplay(intMenuAcionaDisplay - 48);
+    }
 }
 
 void fnAdDigital(void){
+    
 }
 
 void fnAdSerial(void){

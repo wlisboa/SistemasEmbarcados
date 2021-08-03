@@ -26,6 +26,16 @@ void clearDisplay(){
 
 void escreveDisplay(int valor){
     clearDisplay();
+
+    if (valor == 0){
+        digitalWrite(D2,TRUE); //Seg a
+        digitalWrite(D3,TRUE); //Seg b
+        digitalWrite(D4,TRUE); //Seg c
+        digitalWrite(D5,TRUE); //Seg d
+        digitalWrite(D6,TRUE); //Seg e
+        digitalWrite(D7,TRUE); //Seg f
+    } 
+
     if (valor == 1){
         digitalWrite(D3,TRUE); //Seg b
         digitalWrite(D4,TRUE); //Seg c
