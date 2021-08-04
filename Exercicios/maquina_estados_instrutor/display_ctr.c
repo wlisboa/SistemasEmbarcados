@@ -26,83 +26,82 @@ void clearDisplay(){
 
 void escreveDisplay(int valor){
     clearDisplay();
-
-    if (valor == 0){
-        digitalWrite(D2,TRUE); //Seg a
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D4,TRUE); //Seg c
-        digitalWrite(D5,TRUE); //Seg d
-        digitalWrite(D6,TRUE); //Seg e
-        digitalWrite(D7,TRUE); //Seg f
-    } 
-
-    if (valor == 1){
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D4,TRUE); //Seg c
-    } 
-
-    if (valor == 2){
-        digitalWrite(D2,TRUE); //Seg a
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D5,TRUE); //Seg d
-        digitalWrite(D6,TRUE); //Seg e
-        digitalWrite(D8,TRUE); //Seg g
-    } 
-
-    if (valor == 3){
-        digitalWrite(D2,TRUE); //Seg a
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D4,TRUE); //Seg c
-        digitalWrite(D5,TRUE); //Seg d
-        digitalWrite(D8,TRUE); //Seg g
-    } 
-
-    if (valor == 4){
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D4,TRUE); //Seg c
-        digitalWrite(D7,TRUE); //Seg f
-        digitalWrite(D8,TRUE); //Seg g
-    } 
-
-    if (valor == 5){
-        digitalWrite(D2,TRUE); //Seg a
-        digitalWrite(D4,TRUE); //Seg c
-        digitalWrite(D5,TRUE); //Seg d
-        digitalWrite(D7,TRUE); //Seg f
-        digitalWrite(D8,TRUE); //Seg g
-    } 
-
-    if (valor == 6){
-        digitalWrite(D2,TRUE); //Seg a
-        digitalWrite(D4,TRUE); //Seg c
-        digitalWrite(D5,TRUE); //Seg d
-        digitalWrite(D6,TRUE); //Seg e
-        digitalWrite(D7,TRUE); //Seg f
-        digitalWrite(D8,TRUE); //Seg g
-    } 
-
-    if (valor == 7){
-        digitalWrite(D2,TRUE); //Seg a
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D4,TRUE); //Seg c
-    } 
-
-    if (valor == 8){
-        digitalWrite(D2,TRUE); //Seg a
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D4,TRUE); //Seg c
-        digitalWrite(D5,TRUE); //Seg d
-        digitalWrite(D6,TRUE); //Seg e
-        digitalWrite(D7,TRUE); //Seg f
-        digitalWrite(D8,TRUE); //Seg g
-    } 
-
-    if (valor == 9){
-        digitalWrite(D2,TRUE); //Seg a
-        digitalWrite(D3,TRUE); //Seg b
-        digitalWrite(D4,TRUE); //Seg c
-        digitalWrite(D5,TRUE); //Seg d
-        digitalWrite(D7,TRUE); //Seg f
-        digitalWrite(D8,TRUE); //Seg g
-    } 
+    switch(valor){
+        case 0:
+            digitalWrite(D2,TRUE); //Seg a
+            digitalWrite(D3,TRUE); //Seg b
+            digitalWrite(D4,TRUE); //Seg c
+            digitalWrite(D5,TRUE); //Seg d
+            digitalWrite(D6,TRUE); //Seg e
+            digitalWrite(D7,TRUE); //Seg f
+        break;
+        case 1:
+            digitalWrite(D3,TRUE); //Seg b
+            digitalWrite(D4,TRUE); //Seg c
+        break;
+        case 2:
+            digitalWrite(D2,TRUE); //Seg a
+            digitalWrite(D3,TRUE); //Seg b
+            digitalWrite(D5,TRUE); //Seg d
+            digitalWrite(D6,TRUE); //Seg e
+            digitalWrite(D8,TRUE); //Seg g
+        break;
+        case 3:
+            digitalWrite(D2,TRUE); //Seg a
+            digitalWrite(D3,TRUE); //Seg b
+            digitalWrite(D4,TRUE); //Seg c
+            digitalWrite(D5,TRUE); //Seg d
+            digitalWrite(D8,TRUE); //Seg g
+        break;
+        case 4:
+            digitalWrite(D3,TRUE); //Seg b
+            digitalWrite(D4,TRUE); //Seg c
+            digitalWrite(D7,TRUE); //Seg f
+            digitalWrite(D8,TRUE); //Seg g
+        break;
+        case 5:
+            digitalWrite(D2,TRUE); //Seg a
+            digitalWrite(D4,TRUE); //Seg c
+            digitalWrite(D5,TRUE); //Seg d
+            digitalWrite(D7,TRUE); //Seg f
+            digitalWrite(D8,TRUE); //Seg g
+        break;
+        case 6:
+            digitalWrite(D2,TRUE); //Seg a
+            digitalWrite(D4,TRUE); //Seg c
+            digitalWrite(D5,TRUE); //Seg d
+            digitalWrite(D6,TRUE); //Seg e
+            digitalWrite(D7,TRUE); //Seg f
+            digitalWrite(D8,TRUE); //Seg g
+        break;
+        case 7:
+            digitalWrite(D2,TRUE); //Seg a
+            digitalWrite(D3,TRUE); //Seg b
+            digitalWrite(D4,TRUE); //Seg c
+        break;
+        case 8:
+            digitalWrite(D2,TRUE); //Seg a
+            digitalWrite(D3,TRUE); //Seg b
+            digitalWrite(D4,TRUE); //Seg c
+            digitalWrite(D5,TRUE); //Seg d
+            digitalWrite(D6,TRUE); //Seg e
+            digitalWrite(D7,TRUE); //Seg f
+            digitalWrite(D8,TRUE); //Seg g
+        break;
+        case 9:
+            digitalWrite(D2,TRUE); //Seg a
+            digitalWrite(D3,TRUE); //Seg b
+            digitalWrite(D4,TRUE); //Seg c
+            digitalWrite(D5,TRUE); //Seg d
+            digitalWrite(D7,TRUE); //Seg f
+            digitalWrite(D8,TRUE); //Seg g
+        break;
+        default:
+            digitalWrite(D2,TRUE); //Seg a
+            digitalWrite(D5,TRUE); //Seg d
+            digitalWrite(D6,TRUE); //Seg e
+            digitalWrite(D7,TRUE); //Seg f
+            digitalWrite(D8,TRUE); //Seg g
+        break;
+    }
 }

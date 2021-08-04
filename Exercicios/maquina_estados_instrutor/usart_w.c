@@ -69,6 +69,28 @@ fnUsartGetC(void)
 }
 
 /******************************************************************************
+NOME:
+
+DESCRICAO:   Le um caracter da porta serial sem bloquear o programa
+		
+PARAMETROS:  Nulo.
+
+RETORNO:     Retorna o caracter recebido via serial.
+*******************************************************************************/
+unsigned char
+fnUsartReadC(void)
+{
+	unsigned char dado;         
+	if (UCSR0A & (1 << RXC0)){ 
+		dado = UDR0;			
+	}
+	else{
+		dado = 0;
+	}	
+	return dado;
+}
+
+/******************************************************************************
 NOME:        fnWrUsart(unsigned char *c)
 
 DESCRICAO:   Envia uma string via interface serial.

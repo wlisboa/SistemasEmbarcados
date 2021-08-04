@@ -21,6 +21,9 @@ fnUsartPutC(unsigned char c);
 unsigned char
 fnUsartGetC(void);
 
+unsigned char
+fnUsartReadC(void);
+
 void
 fnWrUsart(char *c);
 

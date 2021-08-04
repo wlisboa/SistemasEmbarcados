@@ -35,6 +35,11 @@ void fnMenuPrincipal(void){
     ucCmd = fnUsartGetC();
     fnUsartPutC(ucCmd);
     fnWrUsart("\n\r");
+
+    if (ucCmd == S_AD_DIGITAL){
+        fnWrUsart("Menu AD digital\n\r");
+        fnWrUsart("q  - Para sair\n\r");
+    }
     intEstado = ucCmd;
 }
 
@@ -75,7 +80,16 @@ void fnAcionaDisplay(void){
 }
 
 void fnAdDigital(void){
-    
+    int intTensaoLida;
+    static unsigned char intMenuAdDigital;
+    intMenuAdDigital = fnUsartReadC();
+    intTensaoLida = fnLerTensao();
+    _delay_ms(1000);
+    escreveDisplay(intTensaoLida/100);
+
+    if (intMenuAdDigital == 'q'){
+        intEstado = S_MENU_PRINCIAL;
+    }
 }
 
 void fnAdSerial(void){
