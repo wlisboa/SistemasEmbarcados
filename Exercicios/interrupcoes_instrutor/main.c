@@ -6,6 +6,7 @@
 #define F_CPU 16000000UL
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <util/delay.h>
 #include <string.h>
 #include "io_ctr.h"
@@ -14,17 +15,25 @@
 #include "driveadc.h"
 
 
-ISR (INT0_vect)
+ISR(INT0_vect)
 {
-    fnWrUsart("Entrou na interrupção");
+    // Desliga o flag global de interrupção
+	SREG &= ~_BV(7); 
+    fnWrUsart("\n\n\rEntrou na interrupcao\n\n\r");
+    // Habilita o flag global de interrupção
+	SREG |= _BV(7); 
 }
 
-
-void
-fnInitExtInterrupt(void)
+void fnInitExtInterrupt(void)
 {
-	SREG |= (1<<7); 
-	MCUCR = _BV(ISC01)| _BV(ISC11);
+    // Desliga o flag global de interrupção
+	SREG &= ~_BV(7); 
+
+    EICRA = _BV(ISC01);  // Configura o pino D2 para detectar borda de descida
+    EIMSK = _BV(INT0);   // Habilita a interrupção 0
+
+    // Habilita o flag global de interrupção
+	SREG |= _BV(7); 
 }
 
 void fnTelaInicial(void){
@@ -37,21 +46,17 @@ int main(){
 
     // Inicializacao das bibliotecas
     mapPorts();
-    initDisplay();
     fnInitUsart(MYUBRR);
-    fnInitAdc();
-    pinMode(D13, INPUT);
-    digitalWrite(D13, TRUE);
+    digitalWrite(D2, TRUE);
+    pinMode(D2, INPUT);
+    fnInitExtInterrupt();
 
     fnTelaInicial();
 
     // Loop principal
     while(1) {
-        valor = digitalRead(D13);
-        fnWrInt(valor);
-        fnWrUsart("\n\r");
-        _delay_ms(100);
+        fnWrUsart(".");
+        _delay_ms(1000);
     }
-
     return 0;
 }
